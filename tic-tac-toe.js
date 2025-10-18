@@ -57,3 +57,52 @@ window.addEventListener('DOMContentLoaded', () => {
   function check() {
   }
 });
+window.addEventListener('DOMContentLoaded', () => {
+  const squ = document.querySelectorAll('#board div');
+  const stat = document.getElementById('status');
+  let activeplayer = 'X';
+  let statonboard = Array(9).fill(null);
+  const succomb = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
+  squ.forEach((square, index) => {
+    square.classList.add('square');
+
+    square.addEventListener('mouseover', () => square.classList.add('hover'));
+    square.addEventListener('mouseout', () => square.classList.remove('hover'));
+
+    square.addEventListener('click', () => {
+      if (!statonboard[index] && !check()) {
+        square.textContent = activeplayer;
+        square.classList.add(activeplayer);
+        statonboard[index] = activeplayer;
+
+        if (check()) {
+          stat.textContent = `Player ${activeplayer} is the Winner!`;
+          stat.classList.add('We have a Winner');
+        } else {
+          activeplayer = activeplayer === 'X' ? 'O' : 'X';
+        }
+      }
+    });
+  });
+
+  function check() {
+    return succomb.some(combo => {
+      const [a, b, c] = combo;
+      return (
+        statonboard[a] &&
+        statonboard[a] === statonboard[b] &&
+        statonboard[a] === statonboard[c]
+      );
+    });
+  }
+});

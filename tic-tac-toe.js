@@ -4,4 +4,3 @@ window.addEventListener("DOMContentLoaded", () => {
     square.classList.add("square");
   });
 });
-

@@ -148,7 +148,7 @@ window.addEventListener('DOMContentLoaded', () => {
       square.textContent = '';
       square.classList.remove('X', 'O');
     });
-    stat.textContent = 'Placemouse over square and click for X or O.';
+    stat.textContent = 'Place mouse over square and click for X or O.';
     stat.classList.remove('We have a winner');
   });
 
